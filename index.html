@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TECHNICIAN / VENDOR • Sensory Residence</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    :root{
+      --g1:#3bd97b;
+      --g2:#2b7a2b;
+      --g3:#176B39;
+      --bg1:#e9f7ef;
+      --bg2:#c8efd9;
+      --bg3:#9fdfbf;
+      --ink:#0f3b23;
+      --muted:#2f5b41;
+      --card: rgba(255,255,255,.78);
+      --border: rgba(15,59,35,.15);
+      --shadow: 0 12px 28px rgba(0,0,0,.14);
+      --shadow2: 0 10px 18px rgba(0,0,0,.12);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background: radial-gradient(900px 420px at 20% 10%, rgba(59,217,123,.35), transparent 60%),
+                  radial-gradient(800px 420px at 80% 20%, rgba(43,122,43,.28), transparent 55%),
+                  linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
+      padding-bottom: 32px;
+    }
+
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(233,247,239,.68);
+      border-bottom: 1px solid var(--border);
+    }
+    .clockbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color:#0f4d2c;
+      letter-spacing: .2px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.65);
+      box-shadow: 0 6px 14px rgba(0,0,0,.08);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .dot{
+      width:9px;height:9px;border-radius:50%;
+      background: linear-gradient(135deg,var(--g1),var(--g2));
+      box-shadow: 0 0 0 3px rgba(59,217,123,.18);
+    }
+
+    .header{
+      padding: 10px 14px 14px;
+    }
+    .titlewrap{
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(59,217,123,.9), rgba(43,122,43,.92));
+      color: #fff;
+      padding: 14px 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.22);
+    }
+    .title{
+      margin:0;
+      font-family: Orbitron, Inter, sans-serif;
+      font-weight: 800;
+      letter-spacing: .8px;
+      font-size: 18px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(0,0,0,.18);
+    }
+    .subtitle{
+      margin: 6px 0 0;
+      font-size: 12px;
+      opacity: .92;
+      letter-spacing: .2px;
+    }
+
+    .container{
+      max-width: 720px;
+      margin: 14px auto 0;
+      padding: 0 12px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .card + .card{ margin-top: 12px; }
+
+    .cardhead{
+      padding: 12px 12px 10px;
+      background: linear-gradient(135deg, rgba(255,255,255,.72), rgba(255,255,255,.40));
+      border-bottom: 1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .cardhead h2{
+      margin:0;
+      font-size: 13px;
+      letter-spacing: .2px;
+      text-transform: uppercase;
+      color: var(--g3);
+    }
+    .badge{
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(59,217,123,.24), rgba(43,122,43,.16));
+      border: 1px solid rgba(43,122,43,.25);
+      color:#0f4d2c;
+      white-space: nowrap;
+    }
+
+    .cardbody{ padding: 12px; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    @media (min-width: 520px){
+      .grid.two{ grid-template-columns: 1fr 1fr; }
+    }
+
+    label{
+      display:block;
+      font-size: 12px;
+      font-weight: 800;
+      color: #195636;
+      margin: 0 0 6px;
+      text-transform: uppercase;
+      letter-spacing: .2px;
+    }
+
+    input, select, textarea{
+      width:100%;
+      border: 1px solid rgba(15,59,35,.22);
+      background: rgba(255,255,255,.78);
+      border-radius: 14px;
+      padding: 12px 12px;
+      font-size: 14px;
+      color: var(--ink);
+      outline:none;
+      box-shadow: 0 8px 16px rgba(0,0,0,.06);
+      transition: transform .06s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    textarea{ min-height: 90px; resize: vertical; }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(59,217,123,.7);
+      box-shadow: 0 10px 22px rgba(0,0,0,.09);
+      transform: translateY(-1px);
+    }
+    .hint{
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:stretch;
+    }
+
+    .btn-3d{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius: 14px;
+      padding: 12px 12px;
+      font-weight: 900;
+      letter-spacing: .35px;
+      text-transform: uppercase;
+      box-shadow: 0 10px 18px rgba(0,0,0,.14);
+      transition: transform .06s ease, filter .12s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height: 44px;
+      white-space: nowrap;
+    }
+    .btn-3d:active{ transform: translateY(1px) scale(.99); filter: brightness(.98); }
+
+    .btn-green{
+      background: linear-gradient(135deg, var(--g1), var(--g2));
+      color:#fff;
+      border: 1px solid rgba(255,255,255,.22);
+      text-shadow: 0 2px 10px rgba(0,0,0,.12);
+    }
+    .btn-soft{
+      background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,255,255,.52));
+      color: var(--g3);
+      border: 1px solid rgba(15,59,35,.18);
+    }
+    .btn-red{
+      background: linear-gradient(135deg, #ff6b6b, #d83a3a);
+      color:#fff;
+      border: 1px solid rgba(255,255,255,.22);
+    }
+    .btn-disabled{
+      opacity: .6;
+      pointer-events:none;
+      filter: grayscale(.25);
+    }
+
+    .toggleline{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(15,59,35,.16);
+      background: rgba(255,255,255,.55);
+      box-shadow: 0 8px 16px rgba(0,0,0,.06);
+    }
+    .switch{
+      position:relative;
+      width: 48px;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(15,59,35,.18);
+      border: 1px solid rgba(15,59,35,.18);
+      cursor:pointer;
+      flex: 0 0 auto;
+    }
+    .switch::after{
+      content:"";
+      position:absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 8px 14px rgba(0,0,0,.14);
+      transition: transform .15s ease;
+    }
+    .switch.on{
+      background: linear-gradient(135deg, rgba(59,217,123,.7), rgba(43,122,43,.55));
+      border-color: rgba(59,217,123,.5);
+    }
+    .switch.on::after{ transform: translateX(20px); }
+
+    .photoArea{
+      display:none;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 16px;
+      border: 1px dashed rgba(15,59,35,.25);
+      background: rgba(255,255,255,.48);
+    }
+
+    .previewWrap{
+      position:relative;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(15,59,35,.18);
+      background: rgba(255,255,255,.5);
+      box-shadow: 0 10px 18px rgba(0,0,0,.08);
+      margin-top: 10px;
+    }
+    .previewWrap img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .wmOverlay{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+      transform: rotate(-18deg);
+      opacity: .18;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-size: 26px;
+      color: rgba(255,255,255,.85);
+      text-shadow: 0 2px 14px rgba(0,0,0,.35);
+      mix-blend-mode: overlay;
+      user-select:none;
+    }
+    @media (max-width:420px){
+      .wmOverlay{ font-size: 22px; letter-spacing: 3px; }
+    }
+
+    .footer{
+      margin-top: 12px;
+      text-align:center;
+      font-size: 11px;
+      color: rgba(15,59,35,.55);
+      padding: 4px 0 0;
+    }
+
+    /* Camera modal */
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index: 50;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 14px;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+    }
+    .modal.show{ display:flex; }
+    .modalCard{
+      width: min(720px, 100%);
+      background: rgba(255,255,255,.92);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.25);
+      box-shadow: 0 18px 38px rgba(0,0,0,.32);
+      overflow:hidden;
+    }
+    .modalHead{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 10px 12px;
+      background: linear-gradient(135deg, rgba(59,217,123,.18), rgba(43,122,43,.12));
+      border-bottom: 1px solid rgba(15,59,35,.15);
+    }
+    .modalHead b{
+      color: var(--g3);
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: .2px;
+    }
+    .modalBody{ padding: 12px; }
+    video{
+      width: 100%;
+      border-radius: 16px;
+      background:#000;
+      border: 1px solid rgba(15,59,35,.14);
+      box-shadow: 0 10px 18px rgba(0,0,0,.14);
+    }
+
+    .swal2-popup{
+      border-radius: 18px !important;
+      border: 1px solid rgba(15,59,35,.14) !important;
+      box-shadow: 0 18px 38px rgba(0,0,0,.22) !important;
+    }
+    .swal2-title{
+      font-family: Orbitron, Inter, sans-serif !important;
+      letter-spacing: .4px !important;
+      font-size: 15px !important;
+      text-transform: uppercase !important;
+    }
+    .swal2-html-container{
+      font-size: 12px !important;
+      line-height: 1.35 !important;
+      color: #184f33 !important;
+    }
+    .swal2-confirm{
+      border-radius: 14px !important;
+      padding: 10px 14px !important;
+      font-weight: 900 !important;
+      letter-spacing: .2px !important;
+      text-transform: uppercase !important;
+      background: linear-gradient(135deg, var(--g1), var(--g2)) !important;
+      box-shadow: 0 12px 18px rgba(0,0,0,.14) !important;
+    }
+    .swal2-cancel{
+      border-radius: 14px !important;
+      padding: 10px 14px !important;
+      font-weight: 900 !important;
+      letter-spacing: .2px !important;
+      text-transform: uppercase !important;
+      background: linear-gradient(135deg, rgba(255,255,255,.88), rgba(255,255,255,.58)) !important;
+      color: var(--g3) !important;
+      border: 1px solid rgba(15,59,35,.18) !important;
+      box-shadow: 0 12px 18px rgba(0,0,0,.10) !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="clockbar">
+      <div class="pill"><span class="dot"></span><span id="clockText">--:--</span></div>
+      <div class="pill"><span id="dateText">--</span></div>
+    </div>
+    <div class="header">
+      <div class="titlewrap">
+        <h1 class="title">TECHNICIAN / VENDOR</h1>
+        <div class="subtitle">SENSORY RESIDENCE • SELF-REGISTRATION</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="card">
+      <div class="cardhead">
+        <h2>Search Record</h2>
+        <span class="badge">OPTIONAL</span>
+      </div>
+      <div class="cardbody">
+        <div class="row">
+          <input id="searchKey" type="text" inputmode="text" placeholder="SEARCH: MYKAD / PASSPORT / PHONE / VEHICLE / NAME" autocomplete="off" />
+          <button id="btnSearch" class="btn-3d btn-soft" type="button">SEARCH</button>
+        </div>
+        <div class="hint">Jika rekod dijumpai, sistem boleh autofill maklumat asas untuk percepat pendaftaran.</div>
+      </div>
+    </div>
+
+    <form id="techForm" class="card" autocomplete="off">
+      <div class="cardhead">
+        <h2>Technician / Vendor Entry</h2>
+        <span class="badge" id="statusBadge">IN PROGRESS</span>
+      </div>
+      <div class="cardbody">
+
+        <div class="grid two">
+          <div>
+            <label for="companySelect">Nama Syarikat</label>
+            <select id="companySelect" required>
+              <option value="" selected disabled>SELECT COMPANY</option>
+              <option>HYUNDAI ELEVATOR</option>
+              <option>TNB</option>
+              <option>SKA (ACCESS CARD/CCTV)</option>
+              <option>PRECIOUS (FIRE SYSTEM)</option>
+              <option>TIME INTERNET</option>
+              <option>OTHERS</option>
+            </select>
+            <div id="companyOtherWrap" style="display:none;margin-top:10px;">
+              <label for="companyOther">Company (Others)</label>
+              <input id="companyOther" type="text" placeholder="TYPE COMPANY NAME" />
+            </div>
+          </div>
+
+          <div>
+            <label for="typeSelect">Jenis Technician / Vendor</label>
+            <select id="typeSelect" required>
+              <option value="" selected disabled>SELECT TYPE</option>
+              <option>ELEVATOR / LIFT</option>
+              <option>ELECTRICAL</option>
+              <option>FIRE SYSTEM</option>
+              <option>CCTV / ACCESS CARD</option>
+              <option>TELCO / INTERNET</option>
+              <option>PLUMBING</option>
+              <option>AIRCOND</option>
+              <option>OTHERS</option>
+            </select>
+            <div id="typeOtherWrap" style="display:none;margin-top:10px;">
+              <label for="typeOther">Type (Others)</label>
+              <input id="typeOther" type="text" placeholder="TYPE TECH/VENDOR TYPE" />
+            </div>
+          </div>
+        </div>
+
+        <div style="height:10px"></div>
+        <div class="grid two">
+          <div>
+            <label for="techName">Nama Technician</label>
+            <input id="techName" type="text" placeholder="FULL NAME" required />
+          </div>
+          <div>
+            <label for="idNo">No. MyKad / Passport</label>
+            <input id="idNo" type="text" placeholder="MYKAD (12 DIGIT) / PASSPORT" required />
+            <div class="hint">MyKad akan auto format: 860923-49-6973</div>
+          </div>
+        </div>
+
+        <div class="grid two" style="margin-top:10px;">
+          <div>
+            <label for="phone">No. Telefon</label>
+            <input id="phone" type="tel" inputmode="tel" placeholder="01XXXXXXXX" required />
+          </div>
+          <div>
+            <label for="vehicle">No. Kenderaan</label>
+            <input id="vehicle" type="text" placeholder="PLATE NO" required />
+          </div>
+        </div>
+
+        <div style="margin-top:10px;">
+          <label for="techCount">Bilangan Technician</label>
+          <select id="techCount" required>
+            <option value="" selected disabled>SELECT</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option>
+          </select>
+        </div>
+
+        <div style="height:10px"></div>
+        <div class="grid two">
+          <div>
+            <label for="purpose">Tujuan / Jenis Kerja</label>
+            <select id="purpose" required>
+              <option value="" selected disabled>SELECT PURPOSE</option>
+              <option>REPAIR</option>
+              <option>MAINTENANCE</option>
+              <option>INSPECTION</option>
+              <option>INSTALLATION</option>
+              <option>TESTING</option>
+              <option>EMERGENCY</option>
+            </select>
+          </div>
+          <div>
+            <label for="workLocation">Lokasi Kerja</label>
+            <input id="workLocation" type="text" placeholder="EXAMPLE: TOWER A LOBBY / UNIT A-09-03A" required />
+          </div>
+        </div>
+
+        <div style="height:10px"></div>
+        <div class="toggleline">
+          <div>
+            <b style="display:block;font-size:12px;color:#195636;text-transform:uppercase;letter-spacing:.2px;">Take Photo (Optional)</b>
+            <div class="hint" style="margin:6px 0 0;">Watermark: <b>SENSORY USE ONLY</b></div>
+          </div>
+          <div id="photoSwitch" class="switch" role="switch" aria-checked="false" tabindex="0"></div>
+        </div>
+
+        <div id="photoArea" class="photoArea">
+          <div class="row">
+            <button id="btnOpenCamera" class="btn-3d btn-green" type="button">OPEN CAMERA</button>
+            <button id="btnClearPhoto" class="btn-3d btn-soft" type="button">CLEAR</button>
+          </div>
+
+          <div id="previewWrap" class="previewWrap" style="display:none;">
+            <img id="photoPreview" alt="Preview" />
+            <div class="wmOverlay">SENSORY USE ONLY</div>
+          </div>
+        </div>
+
+        <div style="height:10px"></div>
+        <div class="grid two">
+          <div>
+            <label for="statusSelect">Status</label>
+            <select id="statusSelect" required>
+              <option>IN PROGRESS</option>
+              <option>COMPLETED</option>
+              <option>EXIT</option>
+            </select>
+          </div>
+          <div>
+            <label for="timeIn">Masa Masuk (Auto)</label>
+            <input id="timeIn" type="text" placeholder="AUTO ON SUBMIT" readonly />
+          </div>
+        </div>
+
+        <div class="grid two" style="margin-top:10px;">
+          <div>
+            <label for="dateStr">Tarikh (Auto)</label>
+            <input id="dateStr" type="text" placeholder="AUTO" readonly />
+          </div>
+          <div>
+            <label for="timeOut">Masa Keluar (Checkout)</label>
+            <input id="timeOut" type="text" placeholder="CHECKOUT TO AUTO FILL" readonly />
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+        <div class="row">
+          <button id="btnSubmit" class="btn-3d btn-green" type="submit" style="flex:1;">SUBMIT ENTRY</button>
+          <button id="btnCheckout" class="btn-3d btn-red btn-disabled" type="button" style="flex:1;">CHECKOUT / EXIT</button>
+        </div>
+
+        <div class="footer">Powered by MRed Tech</div>
+      </div>
+    </form>
+  </div>
+
+  <div id="cameraModal" class="modal" aria-hidden="true">
+    <div class="modalCard">
+      <div class="modalHead">
+        <b>Camera</b>
+        <button id="btnCloseCamera" class="btn-3d btn-soft" type="button" style="min-height:38px;padding:8px 10px;">CLOSE</button>
+      </div>
+      <div class="modalBody">
+        <video id="video" playsinline autoplay></video>
+        <div class="row" style="margin-top:10px;">
+          <button id="btnCapture" class="btn-3d btn-green" type="button" style="flex:1;">CAPTURE</button>
+          <button id="btnRetake" class="btn-3d btn-soft" type="button" style="flex:1;">RETAKE</button>
+        </div>
+        <div class="hint" style="margin-top:10px;">
+          Pastikan gambar jelas, tidak blur, tidak silau. Watermark akan dimasukkan untuk tujuan audit.
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const WORKER_URL = "PASTE_YOUR_WORKER_URL_HERE";
+const WATERMARK_TEXT = "SENSORY USE ONLY";
+const MAX_PHOTO_W = 1400;
+const JPEG_QUALITY = 0.82;
+const REQUEST_TIMEOUT_MS = 18000;
+
+const $ = (id) => document.getElementById(id);
+
+const STATE = {
+  lastRecordId: "",
+  isSubmitting: false,
+  isCheckedIn: false,
+  photoEnabled: false,
+  cleanPhotoBlob: null,
+  watermarkedPhotoBlob: null
+};
+
+function nowParts(){
+  const d = new Date();
+  const pad = (n)=> String(n).padStart(2,"0");
+  const yyyy = d.getFullYear();
+  const mm = pad(d.getMonth()+1);
+  const dd = pad(d.getDate());
+  const hh = pad(d.getHours());
+  const mi = pad(d.getMinutes());
+  const ss = pad(d.getSeconds());
+  return {
+    dateMY: `${dd}/${mm}/${yyyy}`,
+    time: `${hh}:${mi}:${ss}`,
+    stamp: `${yyyy}-${mm}-${dd} ${hh}:${mi}:${ss}`
+  };
+}
+
+function normalizeUpper(s){
+  return (s ?? "").toString().trim().toUpperCase();
+}
+
+function normalizePhone(s){
+  let v = (s ?? "").toString().trim();
+  v = v.replace(/[^\d]/g,"");
+  if (!v) return "";
+  if (v[0] !== "0") v = "0" + v;
+  return v;
+}
+
+function isLikelyMykad(digits){
+  return /^\d{12}$/.test(digits);
+}
+function formatMykad(digits12){
+  return digits12.slice(0,6)+"-"+digits12.slice(6,8)+"-"+digits12.slice(8);
+}
+
+function safeSwal(opts){
+  return Swal.fire({
+    background: "linear-gradient(135deg, #e9f7ef 0%, #c8efd9 45%, #9fdfbf 100%)",
+    color: "#176B39",
+    ...opts
+  });
+}
+
+async function fetchJson(url, options={}){
+  const controller = new AbortController();
+  const t = setTimeout(()=>controller.abort(), REQUEST_TIMEOUT_MS);
+  try{
+    const res = await fetch(url, { ...options, signal: controller.signal });
+    const text = await res.text();
+    let data;
+    try { data = JSON.parse(text); } catch { data = { ok: res.ok, raw: text }; }
+    if (!res.ok) throw new Error(data?.message || ("HTTP " + res.status));
+    return data;
+  } finally { clearTimeout(t); }
+}
+
+function tickClock(){
+  const p = nowParts();
+  $("clockText").textContent = p.time;
+  $("dateText").textContent = p.dateMY;
+}
+setInterval(tickClock, 1000);
+tickClock();
+
+const companySelect = $("companySelect");
+const companyOtherWrap = $("companyOtherWrap");
+const companyOther = $("companyOther");
+
+const typeSelect = $("typeSelect");
+const typeOtherWrap = $("typeOtherWrap");
+const typeOther = $("typeOther");
+
+function applyOthersLogic(){
+  const cIsOther = (companySelect.value === "OTHERS");
+  companyOtherWrap.style.display = cIsOther ? "block" : "none";
+  companyOther.required = cIsOther;
+  if (!cIsOther) companyOther.value = "";
+
+  const tIsOther = (typeSelect.value === "OTHERS");
+  typeOtherWrap.style.display = tIsOther ? "block" : "none";
+  typeOther.required = tIsOther;
+  if (!tIsOther) typeOther.value = "";
+}
+companySelect.addEventListener("change", applyOthersLogic);
+typeSelect.addEventListener("change", applyOthersLogic);
+
+$("techName").addEventListener("input", (e)=> e.target.value = normalizeUpper(e.target.value));
+$("vehicle").addEventListener("input", (e)=> e.target.value = normalizeUpper(e.target.value).replace(/\s+/g,""));
+$("workLocation").addEventListener("input", (e)=> e.target.value = normalizeUpper(e.target.value));
+$("phone").addEventListener("blur", (e)=> e.target.value = normalizePhone(e.target.value));
+
+$("idNo").addEventListener("input", (e)=>{
+  const digits = e.target.value.replace(/[^\d]/g,"");
+  if (digits.length >= 12){
+    const first12 = digits.slice(0,12);
+    if (isLikelyMykad(first12)) e.target.value = formatMykad(first12);
+  }
+});
+
+const photoSwitch = $("photoSwitch");
+const photoArea = $("photoArea");
+const previewWrap = $("previewWrap");
+const photoPreview = $("photoPreview");
+
+function setPhotoEnabled(on){
+  STATE.photoEnabled = !!on;
+  photoSwitch.classList.toggle("on", STATE.photoEnabled);
+  photoSwitch.setAttribute("aria-checked", STATE.photoEnabled ? "true":"false");
+  photoArea.style.display = STATE.photoEnabled ? "block" : "none";
+  if (!STATE.photoEnabled) clearPhoto();
+}
+function clearPhoto(){
+  STATE.cleanPhotoBlob = null;
+  STATE.watermarkedPhotoBlob = null;
+  previewWrap.style.display = "none";
+  photoPreview.removeAttribute("src");
+}
+photoSwitch.addEventListener("click", ()=> setPhotoEnabled(!STATE.photoEnabled));
+photoSwitch.addEventListener("keydown", (e)=>{
+  if (e.key === "Enter" || e.key === " "){ e.preventDefault(); setPhotoEnabled(!STATE.photoEnabled); }
+});
+$("btnClearPhoto").addEventListener("click", clearPhoto);
+
+const cameraModal = $("cameraModal");
+const video = $("video");
+let mediaStream = null;
+
+function showModal(){ cameraModal.classList.add("show"); cameraModal.setAttribute("aria-hidden","false"); }
+function hideModal(){ cameraModal.classList.remove("show"); cameraModal.setAttribute("aria-hidden","true"); }
+
+async function openCamera(){
+  showModal();
+  mediaStream = await navigator.mediaDevices.getUserMedia({
+    video: { facingMode: { ideal: "environment" }, width: { ideal: 1920 }, height: { ideal: 1080 } },
+    audio: false
+  });
+  video.srcObject = mediaStream;
+  await video.play();
+}
+function stopCamera(){
+  if (mediaStream){ mediaStream.getTracks().forEach(t=>t.stop()); mediaStream = null; }
+  video.srcObject = null;
+}
+
+$("btnOpenCamera").addEventListener("click", async ()=>{
+  if (!STATE.photoEnabled) setPhotoEnabled(true);
+  try{ await openCamera(); }
+  catch(err){
+    hideModal();
+    await safeSwal({ icon:"error", title:"Camera Error", html: (err?.message || "Unable to access camera") });
+  }
+});
+$("btnCloseCamera").addEventListener("click", ()=>{ stopCamera(); hideModal(); });
+cameraModal.addEventListener("click", (e)=>{ if (e.target===cameraModal){ stopCamera(); hideModal(); } });
+
+const capCanvas = document.createElement("canvas");
+const capCtx = capCanvas.getContext("2d", { willReadFrequently: true });
+
+function drawWatermark(ctx, w, h){
+  const text = WATERMARK_TEXT;
+  const fontSize = Math.max(22, Math.floor(Math.min(w,h) * 0.045));
+  ctx.save();
+  ctx.globalAlpha = 0.18;
+  ctx.translate(w/2, h/2);
+  ctx.rotate(-Math.PI/10);
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.font = `900 ${fontSize}px Inter, Arial, sans-serif`;
+  ctx.fillStyle = "rgba(255,255,255,.92)";
+  ctx.strokeStyle = "rgba(0,0,0,.35)";
+  ctx.lineWidth = Math.max(2, Math.floor(fontSize * 0.06));
+  ctx.strokeText(text, 0, 0);
+  ctx.fillText(text, 0, 0);
+  ctx.restore();
+}
+function canvasToBlob(canvas, quality){
+  return new Promise((resolve)=> canvas.toBlob(resolve, "image/jpeg", quality));
+}
+async function captureFrame(){
+  const vw = video.videoWidth || 1280;
+  const vh = video.videoHeight || 720;
+  if (!vw || !vh) throw new Error("Camera not ready");
+
+  const scale = Math.min(1, MAX_PHOTO_W / vw);
+  const tw = Math.round(vw * scale);
+  const th = Math.round(vh * scale);
+
+  capCanvas.width = tw; capCanvas.height = th;
+  capCtx.drawImage(video, 0, 0, tw, th);
+  const clean = await canvasToBlob(capCanvas, JPEG_QUALITY);
+
+  drawWatermark(capCtx, tw, th);
+  const watermarked = await canvasToBlob(capCanvas, JPEG_QUALITY);
+
+  STATE.cleanPhotoBlob = clean;
+  STATE.watermarkedPhotoBlob = watermarked;
+
+  photoPreview.src = URL.createObjectURL(watermarked);
+  previewWrap.style.display = "block";
+
+  stopCamera(); hideModal();
+  await safeSwal({ icon:"success", title:"Captured", html:"Photo saved (optional)." });
+}
+
+$("btnCapture").addEventListener("click", async ()=>{
+  try{ await captureFrame(); }
+  catch(err){ await safeSwal({ icon:"error", title:"Capture Failed", html:(err?.message||"Unable to capture") }); }
+});
+$("btnRetake").addEventListener("click", async ()=>{
+  try{ if (!mediaStream) await openCamera(); } catch {}
+});
+
+const statusSelect = $("statusSelect");
+const statusBadge = $("statusBadge");
+function syncStatusBadge(){ statusBadge.textContent = statusSelect.value || "IN PROGRESS"; }
+statusSelect.addEventListener("change", syncStatusBadge);
+syncStatusBadge();
+
+const btnSubmit = $("btnSubmit");
+const btnCheckout = $("btnCheckout");
+
+function setBtnLoading(btn, on, label){
+  if (on){
+    btn.dataset._label = btn.textContent;
+    btn.textContent = label || "PLEASE WAIT…";
+    btn.classList.add("btn-disabled");
+  } else {
+    btn.textContent = btn.dataset._label || btn.textContent;
+    btn.classList.remove("btn-disabled");
+  }
+}
+function enableCheckout(on){
+  btnCheckout.classList.toggle("btn-disabled", !on);
+  STATE.isCheckedIn = !!on;
+}
+
+function setDropdownOrOther(sel, wrap, otherInput, value){
+  const v = normalizeUpper(value || "");
+  if (!v){ sel.value=""; wrap.style.display="none"; otherInput.required=false; otherInput.value=""; return; }
+  const opts = Array.from(sel.options).map(o=>o.textContent.trim().toUpperCase());
+  const idx = opts.indexOf(v);
+  if (idx >= 0){
+    sel.value = sel.options[idx].textContent;
+    wrap.style.display="none"; otherInput.required=false; otherInput.value="";
+  } else {
+    sel.value = "OTHERS";
+    wrap.style.display="block"; otherInput.required=true; otherInput.value=v;
+  }
+  applyOthersLogic();
+}
+function autofillFromRecord(r){
+  setDropdownOrOther(companySelect, companyOtherWrap, companyOther, r.company);
+  setDropdownOrOther(typeSelect, typeOtherWrap, typeOther, r.tech_type);
+  $("techName").value = normalizeUpper(r.tech_name || "");
+  $("idNo").value = normalizeUpper(r.id_no || "");
+  $("phone").value = normalizePhone(r.phone || "");
+  $("vehicle").value = normalizeUpper(r.vehicle || "");
+  $("techCount").value = (r.tech_count || "").toString() || "";
+}
+
+$("btnSearch").addEventListener("click", async ()=>{
+  const key = normalizeUpper($("searchKey").value);
+  if (!key) return safeSwal({ icon:"info", title:"Enter Search Key", html:"Please type MyKad/Passport / Phone / Vehicle / Name." });
+  if (WORKER_URL.includes("PASTE_YOUR_WORKER_URL_HERE")) return safeSwal({ icon:"warning", title:"WORKER_URL Required", html:"Please paste your WORKER_URL in CONFIG first." });
+
+  try{
+    const data = await fetchJson(`${WORKER_URL}?action=search&key=${encodeURIComponent(key)}`, { method:"GET" });
+    const st = (data?.status || "").toString().toLowerCase();
+    if (st === "found" || st === "expired"){
+      const r = data.record || {};
+      const html = `
+        <div style="text-align:left">
+          <b>${(r.company||"-")}</b><br>
+          NAME: ${r.tech_name||"-"}<br>
+          ID: ${r.id_no||"-"}<br>
+          PHONE: ${r.phone||"-"}<br>
+          VEHICLE: ${r.vehicle||"-"}<br>
+          LAST: ${r.timestamp_in||r.timestamp||"-"}<br>
+          <span style="display:inline-block;margin-top:6px;padding:4px 8px;border-radius:999px;border:1px solid rgba(15,59,35,.18);background:rgba(255,255,255,.55);font-weight:900;">
+            ${st === "expired" ? "RECORD EXPIRED" : "RECORD FOUND"}
+          </span>
+        </div>
+      `;
+      const res = await safeSwal({
+        icon: st === "expired" ? "warning" : "success",
+        title: st === "expired" ? "Record Expired" : "Record Found",
+        html,
+        showCancelButton: true,
+        confirmButtonText: "USE THIS INFO",
+        cancelButtonText: "NEW ENTRY"
+      });
+      if (res.isConfirmed){
+        autofillFromRecord(r);
+        $("purpose").value = "";
+        $("workLocation").value = "";
+        clearPhoto();
+        await safeSwal({ icon:"success", title:"Autofill Done", html:"Please confirm purpose & location for this entry." });
+      }
+    } else {
+      await safeSwal({ icon:"info", title:"No Record Found", html:"Continue to fill the form." });
+    }
+  } catch(err){
+    await safeSwal({ icon:"error", title:"Search Error", html:(err?.message||"Search failed") });
+  }
+});
+
+function collectPayload(){
+  return {
+    company: normalizeUpper(companySelect.value),
+    company_other: normalizeUpper(companyOther.value),
+    tech_type: normalizeUpper(typeSelect.value),
+    tech_type_other: normalizeUpper(typeOther.value),
+    tech_name: normalizeUpper($("techName").value),
+    id_no: normalizeUpper($("idNo").value),
+    phone: normalizePhone($("phone").value),
+    vehicle: normalizeUpper($("vehicle").value).replace(/\s+/g,""),
+    tech_count: normalizeUpper($("techCount").value),
+    purpose: normalizeUpper($("purpose").value),
+    work_location: normalizeUpper($("workLocation").value),
+    status: normalizeUpper($("statusSelect").value),
+    module: "TECHNICIAN_VENDOR",
+    entry_mode: "TECHNICIAN_SELF"
+  };
+}
+
+function validatePayload(p){
+  if (!p.company) return "Please select COMPANY.";
+  if (p.company === "OTHERS" && !p.company_other) return "Please type COMPANY (OTHERS).";
+  if (!p.tech_type) return "Please select TECH/VENDOR TYPE.";
+  if (p.tech_type === "OTHERS" && !p.tech_type_other) return "Please type TYPE (OTHERS).";
+  if (!p.tech_name) return "Please enter TECHNICIAN NAME.";
+  if (!p.id_no) return "Please enter MYKAD/PASSPORT.";
+  const digits = p.id_no.replace(/[^\d]/g,"");
+  if (/^\d+$/.test(digits) && digits.length && digits.length !== 12) {
+    // allow, but technician should re-check
+  }
+  if (!p.phone) return "Please enter PHONE NO.";
+  if (p.phone.length < 10) return "Phone no must be at least 10 digits.";
+  if (!p.vehicle) return "Please enter VEHICLE NO.";
+  if (!p.tech_count) return "Please select TECHNICIAN COUNT.";
+  if (!p.purpose) return "Please select PURPOSE.";
+  if (!p.work_location) return "Please enter WORK LOCATION.";
+  return "";
+}
+
+function resetFormForNext(){
+  $("techForm").reset();
+  applyOthersLogic();
+  clearPhoto();
+  $("timeIn").value = "";
+  $("timeOut").value = "";
+  $("dateStr").value = nowParts().dateMY;
+  statusSelect.value = "IN PROGRESS";
+  syncStatusBadge();
+  enableCheckout(false);
+  STATE.lastRecordId = "";
+}
+
+$("dateStr").value = nowParts().dateMY;
+
+function blobToBase64(blob){
+  return new Promise((resolve,reject)=>{
+    const r = new FileReader();
+    r.onload = ()=> resolve((r.result || "").toString().split(",")[1] || "");
+    r.onerror = ()=> reject(new Error("Failed to read photo"));
+    r.readAsDataURL(blob);
+  });
+}
+
+$("techForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  if (STATE.isSubmitting) return;
+  if (WORKER_URL.includes("PASTE_YOUR_WORKER_URL_HERE")) return safeSwal({ icon:"warning", title:"WORKER_URL Required", html:"Please paste your WORKER_URL in CONFIG first." });
+
+  const payload = collectPayload();
+  const msg = validatePayload(payload);
+  if (msg) return safeSwal({ icon:"info", title:"Incomplete", html: msg });
+
+  let photo_b64 = "";
+  if (STATE.photoEnabled && STATE.watermarkedPhotoBlob){
+    photo_b64 = await blobToBase64(STATE.watermarkedPhotoBlob);
+  }
+
+  const parts = nowParts();
+  const body = { action:"submit", timestamp_in: parts.stamp, date: parts.dateMY, ...payload, photo_b64 };
+
+  try{
+    STATE.isSubmitting = true;
+    setBtnLoading(btnSubmit, true, "SUBMITTING…");
+
+    const data = await fetchJson(WORKER_URL, {
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify(body)
+    });
+
+    STATE.lastRecordId = data?.record_id || data?.id || "";
+    $("timeIn").value = data?.time_in || parts.stamp;
+    $("dateStr").value = parts.dateMY;
+
+    enableCheckout(true);
+
+    await safeSwal({
+      icon:"success",
+      title:"Submitted",
+      html: `
+        <div style="text-align:left">
+          STATUS: <b>${payload.status}</b><br>
+          TIME IN: <b>${$("timeIn").value}</b><br>
+          ${STATE.lastRecordId ? `RECORD ID: <b>${STATE.lastRecordId}</b><br>` : ""}
+          ${data?.photo_url ? `PHOTO SAVED<br>` : ""}
+        </div>`
+    });
+
+  } catch(err){
+    await safeSwal({ icon:"error", title:"Submit Error", html:(err?.message||"Submit failed") });
+  } finally {
+    setBtnLoading(btnSubmit, false);
+    STATE.isSubmitting = false;
+  }
+});
+
+$("btnCheckout").addEventListener("click", async ()=>{
+  if (!STATE.isCheckedIn || STATE.isSubmitting) return;
+  if (WORKER_URL.includes("PASTE_YOUR_WORKER_URL_HERE")) return safeSwal({ icon:"warning", title:"WORKER_URL Required", html:"Please paste your WORKER_URL in CONFIG first." });
+
+  const res = await safeSwal({
+    icon:"question",
+    title:"Confirm Checkout",
+    html:"Are you sure you want to CHECKOUT / EXIT?",
+    showCancelButton: true,
+    confirmButtonText:"YES",
+    cancelButtonText:"NO"
+  });
+  if (!res.isConfirmed) return;
+
+  const parts = nowParts();
+  try{
+    STATE.isSubmitting = true;
+    setBtnLoading(btnCheckout, true, "CHECKING OUT…");
+
+    const body = { action:"checkout", record_id: STATE.lastRecordId || "", time_out: parts.stamp, status:"EXIT", module:"TECHNICIAN_VENDOR" };
+
+    const data = await fetchJson(WORKER_URL, {
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify(body)
+    });
+
+    $("timeOut").value = data?.time_out || parts.stamp;
+    statusSelect.value = "EXIT";
+    syncStatusBadge();
+    enableCheckout(false);
+
+    await safeSwal({ icon:"success", title:"Checkout Done", html:`TIME OUT: <b>${$("timeOut").value}</b><br>STATUS: <b>EXIT</b>` });
+
+    resetFormForNext();
+
+  } catch(err){
+    await safeSwal({ icon:"error", title:"Checkout Error", html:(err?.message||"Checkout failed") });
+  } finally {
+    setBtnLoading(btnCheckout, false);
+    STATE.isSubmitting = false;
+  }
+});
+
+applyOthersLogic();
+setPhotoEnabled(false);
+</script>
+</body>
+</html>
